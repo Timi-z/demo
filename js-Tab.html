@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .box {
+            width: 314px;
+            margin: 100px auto;
+        }
+        
+        .box .tab_menu {
+            height: 40px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+        }
+        
+        .box .tab_menu li {
+            float: left;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+        
+        .box .tab_menu .current {
+            background-color: rgb(253, 111, 60);
+        }
+        
+        .box .tab_content .item {
+            height: 100px;
+            background-color: cornflowerblue;
+            display: none;
+        }
+        
+        .box .tab_content .current {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="tab_menu">
+            <ul>
+                <li class="current">游戏鼠标</li>
+                <li>机械键盘</li>
+                <li>游戏耳机</li>
+            </ul>
+        </div>
+        <div class="tab_content">
+            <div class="item current">游戏鼠标</div>
+            <div class="item">机械键盘</div>
+            <div class="item">游戏耳机</div>
+        </div>
+    </div>
+    <script>
+        var tab_menu = document.querySelector('.tab_menu');
+        var lis = tab_menu.querySelectorAll('li');
+        var items = document.querySelectorAll('.item');
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('idx', i);
+            lis[i].onclick = function() {
+                for (var j = 0; j < lis.length; j++) {
+                    lis[j].className = '';
+                    items[j].style.display = 'none';
+                }
+                this.className = 'current';
+                var idx = this.getAttribute('idx');
+                items[idx].style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

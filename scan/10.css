@@ -1,0 +1,29 @@
+.v-code {
+    width: 145px;
+    height: 240px;
+    padding-top: 47px;
+    background: url(imgs/index_z.png) 0 0 no-repeat;
+    position: relative;
+}
+
+.v-code .vm {
+    display: block;
+    width: 107px;
+    margin: 0 auto;
+}
+
+.line {
+    position: absolute;
+    top: 42px;
+    left: 13px;
+    animation: move 3s linear infinite alternate;
+}
+
+@keyframes move {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(0, 100px);
+    }
+}

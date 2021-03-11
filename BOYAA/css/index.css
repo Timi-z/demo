@@ -1,0 +1,324 @@
+/* banner样式 */
+
+.banner {
+    width: 100%;
+    height: 460px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner .pics li {
+    position: absolute;
+    width: 1920px;
+    top: 0;
+    left: 50%;
+    margin-left: -960px;
+    display: none;
+}
+
+.banner .pics li.current {
+    display: block;
+}
+
+.banner .ctrls {
+    position: absolute;
+    width: 100px;
+    height: 12px;
+    left: 50%;
+    margin-left: -50px;
+    bottom: 24px;
+}
+
+.banner .ctrls li {
+    float: left;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.banner .ctrls li.active {
+    background-color: #fff;
+}
+
+.banner a.arrow {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0, .1);
+    display: none;
+}
+
+.banner a.arrow:hover {
+    background-color: rgb(0, 0, 0, .3);
+}
+
+.banner:hover .arrow {
+    display: block;
+}
+
+.banner #left {
+    left: 0;
+}
+
+.banner #right {
+    right: 0;
+}
+
+
+/* banner样式结束 */
+
+
+/* 内容样式 */
+
+.connent {
+    width: 100%;
+    height: 592px;
+    padding: 57px 0 52px;
+    background: url(../img/mainbg.jpg) no-repeat bottom;
+    overflow: hidden;
+}
+
+.connent .pro_warp {
+    position: relative;
+    height: 230px;
+    border-bottom: 1px solid #dbe1e7;
+}
+
+.connent .pro {
+    width: 3000px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.connent .pro li {
+    float: left;
+    width: 218px;
+    height: 200px;
+    margin-right: 43px;
+}
+
+.connent .pro li a {
+    display: block;
+    height: 200px;
+    text-align: center;
+    color: #444866;
+}
+
+.connent .pro li a img {
+    width: 218px;
+    height: 128px;
+}
+
+.connent .pro li a h4 {
+    padding: 6px 0;
+}
+
+.connent .pro li a span {
+    font-size: 12px;
+    color: #38b774;
+    background: url(../img/arrow.png) no-repeat right;
+    padding-right: 10px;
+}
+
+.connent .pro li a:hover {
+    background-color: #33b972;
+    color: #fff;
+    opacity: .9;
+}
+
+.connent .pro li a:hover span {
+    color: #fff;
+    background-image: url(../img/arrow2.png);
+}
+
+.connent .ctrls {
+    position: absolute;
+    width: 92px;
+    height: 12px;
+    left: 50%;
+    margin-left: -46px;
+    bottom: -6px;
+    background-color: #fff;
+}
+
+.connent .ctrls li {
+    float: left;
+    width: 12px;
+    height: 12px;
+    background-color: #b5c0cb;
+    border-radius: 50%;
+    margin-left: 14px;
+}
+
+.connent .ctrls li.active {
+    background-color: #2fbc71;
+}
+
+.connent .info {
+    height: 310px;
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+.connent .info .news {
+    width: 460px;
+    height: 260px;
+    padding: 50px 20px 0;
+    background: url(../img/newsbg.jpg) no-repeat;
+    overflow: hidden;
+}
+
+.connent .info .news .top,
+.connent .info .jobs .top {
+    position: relative;
+    width: 270px;
+    height: 70px;
+}
+
+.connent .info .more {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 48px;
+    height: 22px;
+    color: #2fbc71;
+    font-size: 12px;
+    border: 1.5px solid #2fbc71;
+    border-radius: 5px;
+    padding: 2px 8px;
+}
+
+.connent .info .more span {
+    position: relative;
+    left: 2px;
+    top: -4px;
+}
+
+.connent .info .news .more:hover {
+    color: #fff;
+    background-color: #2fbc71;
+}
+
+.connent .info .news .more:hover span {
+    color: #fff;
+}
+
+.connent .info .jobs .more:hover {
+    color: #2fbc71;
+    background-color: #fff;
+}
+
+.connent .info .jobs .more:hover span {
+    color: #2fbc71;
+}
+
+.connent .info .news .bottom li {
+    width: 460px;
+    height: 46px;
+    line-height: 46px;
+    border-bottom: 1px solid #dbe1e7;
+}
+
+.connent .info .news .bottom li a {
+    float: left;
+    width: 410px;
+    color: #444866;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.connent .info .news .bottom li span {
+    float: right;
+    color: #afbecf;
+    font-size: 12px;
+}
+
+.connent .info .news .bottom li a:hover {
+    color: #38b774;
+}
+
+.connent .info .jobs {
+    width: 460px;
+    height: 260px;
+    padding: 50px 20px 0;
+    background: url(../img/jobsbg.jpg) no-repeat;
+}
+
+.connent .info .jobs .more {
+    color: #fff;
+    border-color: #fff;
+}
+
+.connent .info .jobs .top h1,
+.connent .info .jobs .top em {
+    position: relative;
+    margin-left: 60px;
+    top: -14px;
+    color: #fff;
+}
+
+.connent .info .jobs .top em {
+    position: relative;
+    top: -20px;
+    font-size: 12px;
+}
+
+.connent .info .jobs .bottom {
+    color: #fff;
+}
+
+.connent .info .jobs .bottom ul li {
+    width: 310px;
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid #6fdea3;
+    cursor: pointer;
+}
+
+.connent .info .jobs .bottom ul li:hover {
+    color: #333;
+}
+
+
+/* 内容样式结束 */
+
+
+/* 返回顶部按钮 */
+
+.button a {
+    position: fixed;
+    display: block;
+    width: 68px;
+    height: 29px;
+    line-height: 29px;
+    background: url(../img/arrow3.png) no-repeat 16px 13px;
+    background-color: rgb(196, 209, 219);
+    border-radius: 4px;
+    right: 16px;
+    bottom: 70px;
+    z-index: 999;
+}
+
+.button a span {
+    position: relative;
+    left: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.button a:hover {
+    background-color: #38b774;
+}
+
+
+/* 返回顶部按钮 */
