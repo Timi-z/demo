@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            /* margin: 100px auto; */
+            position: absolute;
+            left: 200px;
+            top: 100px;
+        }
+        
+        .dotted {
+            width: 8px;
+            height: 8px;
+            background-color: #09f;
+            border-radius: 50%;
+        }
+        
+        div[class^='pulse'] {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            box-shadow: 0 0 12px #009dfd;
+            border-radius: 50%;
+            animation: move1 1.2s linear infinite;
+        }
+        
+        div.pulse2 {
+            animation-delay: .4s;
+        }
+        
+        div.pulse3 {
+            animation-delay: .8s;
+        }
+        
+        @keyframes move1 {
+            0% {}
+            70% {
+                width: 40px;
+                height: 40px;
+                opacity: 1;
+            }
+            100% {
+                width: 40px;
+                height: 40px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="dotted"></div>
+        <div class="pulse1"></div>
+        <div class="pulse2"></div>
+        <div class="pulse3"></div>
+    </div>
+</body>
+
+</html>

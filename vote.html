@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        #app {
+            width: 300px;
+            height: 200px;
+            margin: 20px auto;
+        }
+        
+        .vote {
+            border: 1px solid #999;
+            margin-bottom: 20px;
+        }
+        
+        header {
+            height: 46px;
+            line-height: 46px;
+            text-align: center;
+            background-color: cornflowerblue;
+        }
+        
+        .vote-main {
+            padding: 6px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .vote-main p {
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+        }
+        
+        .vote-footer {
+            overflow: hidden;
+            margin: 12px 0;
+        }
+        
+        .vote-footer button {
+            float: right;
+            margin-right: 10px;
+            padding: 5px 15px;
+            color: white;
+            background-color: #008ed5;
+            border: 0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <my-vote :title="title"></my-vote>
+        <my-vote :title="title"></my-vote>
+    </div>
+    <template id="voteMain">
+        <div class="vote-main">
+            <p>赞成人数{{supNum}}</p>
+            <p>反对人数{{oppNum}}</p>
+            <p>支持率{{rate}}</p>
+        </div>
+    </template>
+    <template id="voteFooter">
+        <div class="vote-footer">
+            <button @click="handle('oppose')">反对</button>
+            <button @click="handle('support')">赞成</button>
+        </div>
+    </template>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        //投票底部内容
+        const voteFooter = {
+                template: '#voteFooter',
+                props: ['eventbus'],
+                methods: {
+                    handle(type) {
+                        //触发子组件绑定的自定义事件
+                        this.$emit('add');
+                        //=>触发公共实例的绑定自定义事件
+                        this.eventbus.$emit('changenum', type);
+                    }
+                }
+            }
+            //投票主体内容组件
+        const voteMain = {
+                template: '#voteMain',
+                props: ['eventbus'],
+                data() {
+                    return {
+                        supNum: 0,
+                        oppNum: 0
+                    }
+                },
+                created() {
+                    this.eventbus.$on('changenum', this.changeNum);
+                },
+                methods: {
+                    changeNum(type) {
+                        type === 'support' ? this.supNum++ : this.oppNum++;
+                    }
+                },
+                computed: {
+                    rate() {
+                        let total = this.supNum + this.oppNum;
+                        return total === 0 ? '0%' : (this.supNum / total * 100).toFixed(2) + '%';
+                    }
+                }
+            }
+            //注册投票组件
+        Vue.component('my-vote', {
+            props: ['title'],
+            data() {
+                return {
+                    num: 0,
+                    eventBus: new Vue
+                }
+            },
+            methods: {
+                add() {
+                    this.num++
+                }
+            },
+            template: `
+              <div class="vote">
+                <header><h2><span v-text="title"></span>总人数{{num}}</h2></header>
+                <vote-main :eventbus="eventBus"></vote-main>
+                <vote-footer @add="add" :eventbus="eventBus"></vote-footer>
+                </div>
+            `,
+            components: {
+                voteMain,
+                voteFooter
+            }
+        })
+        const vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    title: '投票啦！'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
