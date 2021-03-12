@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #table .add {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin: 10 0;
+        }
+        
+        button {
+            background-color: #008cd5;
+            border: 0;
+            padding: 4px 15px;
+            color: white;
+            border-radius: 3px;
+        }
+        
+        table {
+            width: 100%;
+            font-size: 14px;
+            border: 1px solid #eee;
+        }
+        
+        table thead th {
+            background-color: #eee;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        tbody td {
+            padding: 10px;
+            text-align: center;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        table span {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        
+        table span.delete {
+            color: red;
+        }
+        
+        table span.edit {
+            color: seagreen;
+        }
+        
+        #mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0, .3);
+            z-index: 5;
+            left: 0;
+            top: 0;
+        }
+        
+        #mask .mask {
+            position: absolute;
+            width: 600px;
+            height: 130px;
+            background-color: white;
+            border-radius: 5px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 10;
+            margin: auto;
+            padding: 15px;
+        }
+        
+        .mask .title {
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mask .title span {
+            cursor: pointer;
+        }
+        
+        .mask .title span {
+            float: right;
+        }
+        
+        .mask .content input {
+            width: 187px;
+            margin-bottom: 10px;
+        }
+        
+        .mask .content p {
+            width: 300px;
+            margin: 10px auto;
+            text-align: center;
+        }
+        
+        .mask .content p button {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="table">
+        <div class="add">
+            <input type="text" v-model="addDetail.title" placeholder="标题">
+            <input type="text" v-model="addDetail.author" placeholder="发布人">
+            <input type="date" v-model="addDetail.dates">
+            <button @click="add">发布</button>
+        </div>
+        <table cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>标题</th>
+                    <th>作者</th>
+                    <th>发布时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(news,idx) in newsList" :key="news.id">
+                    <td>{{idx+1}}</td>
+                    <td width="30%">{{news.title}}</td>
+                    <td width="15%">{{news.author}}</td>
+                    <td width="20%">{{news.dates}}</td>
+                    <td width="20%">
+                        <span class="delete" @click="deleteNew(idx)">删除</span>
+                        <span class="edit" @click="editNew(news)">操作</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="mask" v-if="editList">
+            <div class="mask">
+                <div class="title">
+                    编辑
+                    <span @click="editList=false">×</span>
+                </div>
+                <div class="content">
+                    <input type="text" v-model="editDetail.title" placeholder="标题">
+                    <input type="text" v-model="editDetail.author" placeholder="发布人">
+                    <input type="date" v-model="editDetail.dates">
+                    <p>
+                        <button @click="ok">确定</button>
+                        <button @click="no">取消</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js "></script>
+    <script>
+        const vm = new Vue({
+            el: '#table',
+            data: {
+                editList: false,
+                addDetail: {},
+                editDetail: {},
+                newsList: [{
+                    id: '10001',
+                    title: '互联网未来黄金十年',
+                    author: '诸葛亮',
+                    dates: '2021-03-01'
+                }, {
+                    id: '10002',
+                    title: '招募将军',
+                    author: '刘备',
+                    dates: '2022-03-01'
+                }]
+            },
+            methods: {
+                deleteNew(i) {
+                    this.newsList.splice(i, 1);
+                },
+                add() {
+                    this.newsList.push({
+                        title: this.addDetail.title,
+                        author: this.addDetail.author,
+                        dates: this.addDetail.dates
+                    })
+                },
+                editNew(news) {
+                    this.editList = true,
+                        this.editDetail = news
+                },
+                ok() {
+                    for (let i = 0; i < this.newsList.length; i++) {
+                        if (this.newsList[i].id === this.editDetail.id) {
+                            this.newsList[i] = this.editDetail;
+                        }
+                    }
+                    this.editList = false;
+                },
+                no() {
+                    this.editList = false;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
