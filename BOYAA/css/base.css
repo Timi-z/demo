@@ -1,4 +1,4 @@
-/* 浏览器重置样式*/
+/* 浏览器重置样式1*/
 
 * {
     padding: 0;
@@ -31,6 +31,6 @@ input {
 
 body {
     background-color: #fff;
-    color:#999;
-    font: 14px/1.5  "Hiragino Sans GB", "Microsoft YaHei", "宋体", Arial, Tahoma, Helvetica, Geneva, sans-serif;
+    color: #999;
+    font: 14px/1.5 "Hiragino Sans GB", "Microsoft YaHei", "宋体", Arial, Tahoma, Helvetica, Geneva, sans-serif;
 }
